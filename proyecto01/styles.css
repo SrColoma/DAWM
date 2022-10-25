@@ -1,3 +1,26 @@
+@media (min-width: 640px) { body {font-size:1em;} }
+@media (min-width:960px) { body {font-size:1.2em;} }
+@media (min-width:1100px) { body {font-size:1.5em;} }
+
+/* Smartphones (portrait and landscape) ———– */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .logo{
+       width: 50%;
+       height: 50%;
+    }
+}
+
+img, video {
+    width: 100%;
+    height: auto;
+    }
+
+* , *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    }
+
 body *{
     font-family: "Franklin Gothic Book";
     background: transparent;
@@ -22,6 +45,10 @@ p{
     justify-content: center;
 }
 
+header{
+    padding-top: 5em;
+}
+
 header>h1{
     width: 100%;
 }
@@ -30,9 +57,9 @@ header>p{
     padding: 2em;
 }
 
-.logo{
-    width: 20rem;
-}
+/* .logo{
+    width: 20em;
+} */
 
 .imagenjuego>img{
     width: 100%;
@@ -76,8 +103,8 @@ header>p{
 
 .tarjeta{
     display: flex;
-    height: 10rem;
-    width: 10rem;
+    height: 8em;
+    width: 8em;
     /* justify-content: center; */
     align-items: center;
     /* border-radius: 50%; */
@@ -163,11 +190,16 @@ header>p{
 footer{
     /* background: rgb(212,196,93);
     background: linear-gradient(180deg, rgba(212,196,93,1) 0%, rgba(255,255,255,0) 100%); */
-
     background: rgb(177,18,47);
     background: linear-gradient(0deg, rgba(177,18,47,1) 0%, rgba(187,64,61,1) 5%, rgba(203,132,82,1) 6%, rgba(175,143,101,1) 10%, rgba(63,186,178,1) 11%, rgba(90,188,163,1) 15%, rgba(212,196,93,1) 16%, rgba(255,255,255,0) 100%);
     padding-bottom: 5em;
 
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
 }
 
-
+#foot-col1{}
+#foot-col2{}
+#foot-col3{}
