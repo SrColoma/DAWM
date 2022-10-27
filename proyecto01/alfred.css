@@ -1,0 +1,72 @@
+@media (min-width: 640px) { body {font-size:1em;} }
+@media (min-width:960px) { body {font-size:1.2em;} }
+@media (min-width:1100px) { body {font-size:1.5em;} }
+
+/* Smartphones (portrait and landscape) ———– */
+@media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+    .logo{
+       width: 50%;
+       height: 50%;
+    }
+}
+
+body{
+    background-color: #e0e0e0;
+    margin: 0px;
+    font-family: "Franklin Gothic Book";
+    background: transparent;    
+}
+
+p{
+    max-width: 700px;
+    justify-content: center;
+}
+
+svg{
+    fill: greenyellow;
+    width: 37px;
+    height: 42px;
+    scale: 0.7;
+}
+
+.cuadro-skills{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin: 0 3em;
+}
+@media (min-width:1100px) { .cuadro-skills {margin: 0 40em;} }
+@media (min-width: 640px) { .cuadro-skills {margin: 0 3em;} }
+@media (min-width:960px) { .cuadro-skills {margin: 0 7em;} }
+
+table *{
+    display: revert;
+}
+
+table{
+    margin: 1em;
+    display: revert;
+}
+
+/* table {
+    width: 30%;
+}  */
+  
+td {
+height: 30px;
+}
+
+.esperiencias{
+    display: flex;
+    align-items: flex-start;
+}
+
+footer{
+    height: 10em;
+}
+
+ul{
+    align-items: flex-start;
+}
