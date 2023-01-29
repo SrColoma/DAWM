@@ -1,11 +1,16 @@
 import app from './app.js';
-import { sequelize } from './database/database.js';
+import { firebase, sequelize} from './database/database.js';
+
+
 import './models/models.js';    
 
 
 async function main(){
+
+    // await firebase.ref('/').once('value');
+    console.log('Connection  firebase has been established successfully.');
     await sequelize.sync();
-    console.log('Connection has been established successfully.');
+    console.log('Connection mysql has been established successfully.');
     app.listen(3000)
     console.log('Server on port 3000');
     

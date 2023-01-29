@@ -15,22 +15,56 @@
     <option value=""></option>
     <!-- Aquí debes agregar las opciones correspondientes a tus clientes mediante JavaScript -->
     </select>
+    <p id="total">total (suma de priceEach * quantityOrdered):</p>
 
     <!-- HTML: Crear una tabla para mostrar las órdenes -->
     <table id="orders-table">
     <thead>
-        <tr>
-        <th>Order Number</th>
-        <th>Product Name</th>
-        <th>Quantity Ordered</th>
-        <th>Price Each</th>
-        <th>Total</th>
+        <th>MSRP</th>
+        <th>buyPrice</th>
+        <th>comments</th>
+        <th>customerNumber</th>
+        <th>htmlDescription</th>
+        <th>image</th>
+        <th>orderDate</th>
+        <th>orderLineNumber </th>
+        <th>orderNumber </th>
+        <th>orderNumber__1  </th>
+        <th>priceEach   </th>
+        <th>productCode </th>
+        <th>productCode__1  </th>
+        <th>productDescription</th>
+        <th>productLine</th>
+        <th>productLine__1</th>
+        <th>productName</th>
+        <th>productScale</th>
+        <th>productVendor</th>
+        <th>quantityInStock</th>
+        <th>quantityOrdered</th>
+        <th>requiredDate</th>
+        <th>shippedDate</th>
+        <th>status</th>
+        <th>textDescription</th>
         </tr>
     </thead>
     <tbody>
         <!-- Aquí debes agregar las filas correspondientes a las órdenes mediante JavaScript -->
     </tbody>
     </table>
+
+    <!-- Tabla con los productos solicitados (de ordenes  con cualquier estado). -->
+    <table id="products-table">
+    <thead>
+        <th>productCodes</th>
+        </tr>
+    </thead>
+    <tbody id="productosbody">
+        <!-- Aquí debes agregar las filas correspondientes a los productos mediante JavaScript -->
+    </tbody>
+    </table>
+
+    
+
     <!-- script -->
     <script src="script.js"></script>
 </body>

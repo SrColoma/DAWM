@@ -13,60 +13,105 @@ fetch("http://localhost:3000/customers")
       });
     });
 
+  // fetch a http://localhost:3000/products y poner dentro de la lista de productos
+  fetch("http://localhost:3000/products")
+    .then((response) => response.json())
+    .then((data) => {
+      // const productsTable = document.getElementById("products-table");
+      const productsTableBody = document.getElementById("productosbody");
+      // agregar cada elemento de data a la tabla de productos
+      data.forEach(data => {
+        const row = document.createElement("tr");
+        const celda = document.createElement("td");
+        celda.innerHTML = data;
+        row.appendChild(celda);
+        productsTableBody.appendChild(row);
+      });
+
+    });
+
+    // const productstable = document.getElementById("products-table");
+
 customerSelect.addEventListener("change", (event) => {
   // Obtener el valor seleccionado del cliente
   const customerId = event.target.value;
-
+  //arreglo priceEach * quantityOrdered
+  
   // Realizar la consulta a la api para obtener las órdenes del cliente seleccionado con estado "Shipped"
-  fetch(`http://localhost:3000/customers/${customerId}`)
-    .then((response) => response.json())
-    .then((data) => {
-
-      const orders = [];
-      data.forEach(data => {
-        orders.push(data);
-      });
-      // for (const order of this.orders) {
-      //   if (order.customerId === customerId) {
-      //     orders.push(order);
-      //   }
-      // }
-
-
-
+  fetch(`http://localhost:3000/shipped/${customerId}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json; charset=utf-8',
+      "Access-Control-Allow-Origin": "*"
+    }
+  })
+  .then((response) => response.json())
+  .then((data) => {
+      let arreglo_de_elementos = [];
       // Mostrar las órdenes en la tabla
       const ordersTable = document.getElementById("orders-table");
       const ordersTableBody = ordersTable.getElementsByTagName("tbody")[0];
       ordersTableBody.innerHTML = ""; // Limpiar la tabla
 
-      for (const order of orders) {
-        // Crear una fila para cada orden
+      for (const order of data) {
+
         const row = document.createElement("tr");
 
-        // Crear las celdas para cada columna
-        const orderNumberCell = document.createElement("td");
-        const orderDateCell = document.createElement("td");
-        const shippedDateCell = document.createElement("td");
-        const statusCell = document.createElement("td");
+        // addObjectToArray(order,arreglo_de_elementos);// ----------------------------------------------
+        arreglo_de_elementos.push({ 
+          priceEach:  order.priceEach, 
+          quantityOrdered: order.quantityOrdered
+        });
+        // let elemento = {
+        //   priceEach: order.priceEach , 
+        //   quantityOrdered: order.quantityOrdered
+        // };
 
-        // Agregar el contenido de las celdas
-        orderNumberCell.innerHTML = order.orderNumber;
-        orderDateCell.innerHTML = order.orderDate;
-        shippedDateCell.innerHTML = order.shippedDate;
-        statusCell.innerHTML = order.status;
+        // arreglo_de_elementos.push(elemento);
 
-        // Agregar las celdas a la fila
-        row.appendChild(orderNumberCell);
-        row.appendChild(orderDateCell);
-        row.appendChild(shippedDateCell);
-        row.appendChild(statusCell);
 
-        // Agregar la fila a la tabla
-        ordersTableBody.appendChild(row);
+        for(const clave in order) {
+          // Crear una fila para cada orden
+          const celda = document.createElement("td");
+          
+          var text = ""+order[clave];
+          var words = text.split(" ");
+          var shortenedText = words.slice(0, 5).join(" ");
+          // document.getElementById("text").innerHTML = shortenedText + "...";
+          celda.innerHTML = shortenedText + "...";
 
-        // Agregar la tabla a la página
+          row.appendChild(celda);
+          // Agregar la fila a la tabla
+          ordersTableBody.appendChild(row);
+
+          //total: recibe mediante POST un arreglo de elementos y devuelve un entero con el total (suma de priceEach * quantityOrdered)
+          // arreglo_de_elementos.push(order[clave]);
+
+        }
         ordersTable.appendChild(ordersTableBody);
       }
-    });
-});
 
+
+
+      //enviar por post el arreglo de elementos
+      fetch("http://localhost:3000/total", {
+        method: 'POST',
+        body: JSON.stringify(arreglo_de_elementos),
+        headers: {
+           'Content-Type': 'application/json; charset=utf-8',
+           "Access-Control-Allow-Origin": "*"
+          }
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        //cambiar el parrafo con el total
+        const total = document.getElementById("total");
+        total.textContent = "total (suma de priceEach * quantityOrdered): " + data + "";
+      });
+    });
+
+
+
+
+
+});
