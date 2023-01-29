@@ -109,9 +109,4 @@ customerSelect.addEventListener("change", (event) => {
         total.textContent = "total (suma de priceEach * quantityOrdered): " + data + "";
       });
     });
-
-
-
-
-
 });
